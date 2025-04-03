@@ -1,4 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+##  The user would enter a postcode, based on which the list will populate the addresses, the user will then select the address from the list; then get the output UPRN to display colour-coded collections.
+![image](https://github.com/user-attachments/assets/8ffaea6f-cba8-4fc4-aa9e-d070954412d8)
+
+![image](https://github.com/user-attachments/assets/bdb1c0b0-acc8-4559-95de-08b329d13773)
+
+![image](https://github.com/user-attachments/assets/05e05fea-1f68-4672-98ed-1dac48a4b6b0)
+
 
 ## Getting Started
 
