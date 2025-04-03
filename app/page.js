@@ -1,17 +1,28 @@
-
 "use client";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import AddressList from "@/components/AddressList";
+import CollectionDetails from "@/components/CollectionDetails";
 
 export default function Home() {
+  const [selectedUprn, setSelectedUprn] = useState(null);
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-gray-800 mb-6">Collection Checker</h1>
-      <Link href="/collection">
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-lg">
-          Check Collection Schedule
-        </Button>
-      </Link>
+    <div className="mr-11 mx-auto p-6">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        Find out your rubbish collection day
+      </h1>
+      <p className="text-gray-700 text-lg mb-6">
+        Check when your rubbish is collected.
+      </p>
+
+      <div className="bg-gray-100 p-6 rounded-lg shadow-md mb-6">
+        <AddressList setSelectedUprn={setSelectedUprn} />
+      </div>
+
+      
+        <div className="mt-6">
+          <CollectionDetails uprn={selectedUprn} />
+        </div>
+    
     </div>
   );
 }

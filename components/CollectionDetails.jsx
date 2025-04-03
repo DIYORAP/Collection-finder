@@ -10,18 +10,16 @@ export default function CollectionDetails({ uprn }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (uprn) {
-            fetchCollectionData();
-        }
+        if (uprn) fetchCollectionData();
     }, [uprn]);
 
     const fetchCollectionData = async () => {
         setError(null);
         setLoading(true);
-
         try {
             const response = await axios.post(
-                "https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/collectionDay", null,
+                "https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/collectionDay",
+                null,
                 {
                     headers: {
                         Method: "POST",
@@ -32,10 +30,8 @@ export default function CollectionDetails({ uprn }) {
                     },
                 }
             );
-
             setLoading(false);
-
-            if (response.data.collectionDay && response.data.collectionDay.length) {
+            if (response.data.collectionDay?.length) {
                 setCollectionData(response.data.collectionDay);
             } else {
                 setError("No collection available.");
@@ -46,34 +42,39 @@ export default function CollectionDetails({ uprn }) {
         }
     };
 
-    if (!uprn) {
-        return <p className="text-gray-500 text-xl">Select an address to see details.</p>;
-    }
+    if (!uprn) return <p className="text-gray-500 text-lg">Select an address to see details.</p>;
 
     return (
         <div>
             {error && (
-                <Alert className=" bg-red-200 border border-red-500 text-red-800 m-5 rounded-lg">
+                <Alert className="bg-red-200 border border-red-500 text-red-800 p-3 rounded-lg mb-3">
                     <AlertDescription>{error}</AlertDescription>
                 </Alert>
             )}
-
             {loading && <p>Loading collection data...</p>}
 
             {collectionData && (
-                <div className="grid grid-cols-1 gap-4 ">
-                    {collectionData.map((bin, index) => (
-                        <Card key={index} className="shadow-lg rounded-md">
-                            <CardContent
-                                className="p-4 text-white"
-                                style={{ backgroundColor: bin.binColor }}
-                            >
-                                <p className="text-lg font-bold">{bin.binType}</p>
-                                <p className="text-sm">Next: {bin.collectionDay}</p>
-                                <p className="text-sm">Following: {bin.followingDay}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                        Your next collection
+                    </label>
+
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        {collectionData.map((bin, index) => (
+                            <Card key={index} className="shadow-lg rounded-md">
+                                <CardContent
+                                    className="p-4 text-white font-semibold"
+                                    style={{ backgroundColor: bin.binColor }}
+                                >
+                                    <p className="text-xl">{bin.binType}</p>
+                                    <p className="text-sm">Next: {bin.collectionDay}</p>
+                                    <p className="text-sm">Following: {bin.followingDay}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
