@@ -53,7 +53,7 @@ export default function CollectionDetails({ uprn }) {
     return (
         <div>
             {error && (
-                <Alert className=" border border-red-500 text-red-800 m-5 rounded-lg">
+                <Alert className=" bg-red-200 border border-red-500 text-red-800 m-5 rounded-lg">
                     <AlertDescription>{error}</AlertDescription>
                 </Alert>
             )}
