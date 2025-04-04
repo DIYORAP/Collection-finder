@@ -19,7 +19,6 @@ export default function AddressList({ setSelectedUprn }) {
         setAddresses([]);
         setSelectedUprn("");
         setSelectedAddress(null);
-
         setError(null);
     }, [postcode]);
 
