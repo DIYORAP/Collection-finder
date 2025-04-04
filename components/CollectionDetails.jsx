@@ -35,10 +35,12 @@ export default function CollectionDetails({ uprn }) {
                 setCollectionData(response.data.collectionDay);
             } else {
                 setError("No collection available.");
+                setCollectionData(null);
             }
         } catch (err) {
             setError("Failed to fetch collection data.");
             setLoading(false);
+            setCollectionData(null);
         }
     };
 
